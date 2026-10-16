@@ -11,8 +11,8 @@ on:
     inputs:
       cycle:
         required: false
-        type: number
-        default: 0
+        type: string          # 👈 string agar konsisten
+        default: '0'
 
 permissions:
   actions: write
