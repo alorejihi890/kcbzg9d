@@ -3,7 +3,7 @@ name: 🐕 Watchdog Loop
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'   # setiap 10 menit
+    - cron: '*/15 * * * *'   # setiap 10 menit
 
 permissions:
   actions: write             # untuk dispatch workflow lain
