@@ -5,7 +5,8 @@ on:
     inputs:
       cycle:
         required: true
-        type: number
+        type: string          # 👈 ubah number ke string
+        default: '1'
 
 jobs:
   hello:
