@@ -1,0 +1,11 @@
+name: 🟢 Starter
+
+on:
+  workflow_call:
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "🚀 Starter: loop dimulai"
