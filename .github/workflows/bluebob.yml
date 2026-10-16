@@ -2,16 +2,53 @@ name: 🔄 Bluebob
 
 on:
   workflow_dispatch:
+    inputs:
+      cycle:
+        description: 'Base cycle'
+        required: false
+        default: '0'
   workflow_call:
+    inputs:
+      cycle:
+        required: false
+        type: number
+        default: 0
 
 permissions:
   actions: write
 
 jobs:
   # =============================================
+  # Hitung cycle untuk tiga xharape + restart
+  # =============================================
+  compute:
+    runs-on: ubuntu-latest
+    outputs:
+      c1: ${{ steps.calc.outputs.c1 }}
+      c2: ${{ steps.calc.outputs.c2 }}
+      c3: ${{ steps.calc.outputs.c3 }}
+      next: ${{ steps.calc.outputs.next }}
+    steps:
+      - id: calc
+        run: |
+          if [ -n "${{ inputs.cycle }}" ]; then
+            BASE="${{ inputs.cycle }}"
+          elif [ -n "${{ github.event.inputs.cycle }}" ]; then
+            BASE="${{ github.event.inputs.cycle }}"
+          else
+            BASE=0
+          fi
+          echo "Base cycle: $BASE"
+          echo "c1=$((BASE + 1))" >> $GITHUB_OUTPUT
+          echo "c2=$((BASE + 2))" >> $GITHUB_OUTPUT
+          echo "c3=$((BASE + 3))" >> $GITHUB_OUTPUT
+          echo "next=$((BASE + 3))" >> $GITHUB_OUTPUT
+
+  # =============================================
   # FASE-FASE UTAMA
   # =============================================
   starter:
+    needs: compute
     uses: ./.github/workflows/starter.yml
 
   pancung-1:
@@ -27,10 +64,10 @@ jobs:
     uses: ./.github/workflows/pancung.yml
 
   xharape-1:
-    needs: pancung-2
+    needs: [pancung-2, compute]
     uses: ./.github/workflows/xharape.yml
     with:
-      cycle: 1
+      cycle: ${{ needs.compute.outputs.c1 }}
 
   pancung-3:
     needs: xharape-1
@@ -45,10 +82,10 @@ jobs:
     uses: ./.github/workflows/pancung.yml
 
   xharape-2:
-    needs: pancung-4
+    needs: [pancung-4, compute]
     uses: ./.github/workflows/xharape.yml
     with:
-      cycle: 2
+      cycle: ${{ needs.compute.outputs.c2 }}
 
   pancung-5:
     needs: xharape-2
@@ -63,14 +100,16 @@ jobs:
     uses: ./.github/workflows/pancung.yml
 
   xharape-3:
-    needs: pancung-6
+    needs: [pancung-6, compute]
     uses: ./.github/workflows/xharape.yml
     with:
-      cycle: 7
+      cycle: ${{ needs.compute.outputs.c3 }}
 
   # =============================================
-  # 🔁 PANGGIL RESTART DI UJUNG
+  # 🔁 PANGGIL RESTART DENGAN CYCLE BERIKUTNYA
   # =============================================
   panggil-restart:
-    needs: [xharape-3]
+    needs: [xharape-3, compute]
     uses: ./.github/workflows/restart.yml
+    with:
+      cycle: ${{ needs.compute.outputs.next }}
