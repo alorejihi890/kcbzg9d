@@ -1,0 +1,76 @@
+name: 🔄 Bluebob
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  actions: write
+
+jobs:
+  # =============================================
+  # FASE-FASE UTAMA
+  # =============================================
+  starter:
+    uses: ./.github/workflows/starter.yml
+
+  pancung-1:
+    needs: starter
+    uses: ./.github/workflows/pancung.yml
+
+  khucluke-1:
+    needs: pancung-1
+    uses: ./.github/workflows/khucluke.yml
+
+  pancung-2:
+    needs: khucluke-1
+    uses: ./.github/workflows/pancung.yml
+
+  xharape-1:
+    needs: pancung-2
+    uses: ./.github/workflows/xharape.yml
+    with:
+      cycle: 1
+
+  pancung-3:
+    needs: xharape-1
+    uses: ./.github/workflows/pancung.yml
+
+  khucluke-2:
+    needs: pancung-3
+    uses: ./.github/workflows/khucluke.yml
+
+  pancung-4:
+    needs: khucluke-2
+    uses: ./.github/workflows/pancung.yml
+
+  xharape-2:
+    needs: pancung-4
+    uses: ./.github/workflows/xharape.yml
+    with:
+      cycle: 2
+
+  pancung-5:
+    needs: xharape-2
+    uses: ./.github/workflows/pancung.yml
+
+  khucluke-3:
+    needs: pancung-5
+    uses: ./.github/workflows/khucluke.yml
+
+  pancung-6:
+    needs: khucluke-3
+    uses: ./.github/workflows/pancung.yml
+
+  xharape-3:
+    needs: pancung-6
+    uses: ./.github/workflows/xharape.yml
+    with:
+      cycle: 7
+
+  # =============================================
+  # 🔁 PANGGIL RESTART DI UJUNG
+  # =============================================
+  panggil-restart:
+    needs: [xharape-3]
+    uses: ./.github/workflows/restart.yml
