@@ -1,0 +1,24 @@
+name: ♻️ Restart
+
+on:
+  workflow_dispatch:        # 👈 Anda klik di sini pertama kali
+  workflow_call:            # 👈 dipanggil oleh bluebob di ujung script
+
+permissions:
+  actions: write
+
+jobs:
+  panggil-bluebob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Panggil bluebob pertama kali
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Menjalankan bluebob..."
+          curl -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/bluebob.yml/dispatches \
+            -d '{"ref":"main"}'
+          echo "✅ Bluebob telah dipicu."
