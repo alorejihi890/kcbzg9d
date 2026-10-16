@@ -1,0 +1,11 @@
+name: 🟢 Pancung
+
+on:
+  workflow_call:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "hello world" & sleep 80
